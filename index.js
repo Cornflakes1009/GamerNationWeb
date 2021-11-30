@@ -2,6 +2,14 @@ const express = require("express");
 const app = express();
 const importData = require('./data.json');
 const bcrypt = require('bcryptjs');
+const mysql = require('mysql');
+
+const con = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_SCHEMA
+  });
 
 app.use(express.json());
 
@@ -19,6 +27,16 @@ app.listen(port, () => {
 
 app.get("/coders", (req, res) => {
     res.send(importData);
+});
+
+app.get("/games", (req, res) => {
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT * FROM games", function (err, result, fields) {
+          if (err) throw err;
+          console.log(result);
+        });
+      });
 });
 
 app.get('/users', (req, res) => {
