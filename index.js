@@ -34,7 +34,7 @@ app.get("/games", (req, res) => {
         if (err) throw err;
         con.query("SELECT * FROM games", function (err, result, fields) {
           if (err) throw err;
-          console.log(result);
+          res.send(result);
         });
       });
 });
