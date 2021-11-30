@@ -23,9 +23,9 @@ app.get("/coders", (req, res) => {
 
 
 
-app.get('/users', (req, res) => {
-    res.json(users)
-});
+// app.get('/users', (req, res) => {
+//     res.json(users)
+// });
 
 // app.post('/users', async (req, res) => {
 //     try {
